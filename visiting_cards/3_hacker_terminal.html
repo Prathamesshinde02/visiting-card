@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Humanized Hacker Terminal Card</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #050505;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .card {
+            width: 480px;
+            height: 290px;
+            background: rgba(10, 10, 10, 0.95);
+            border: 1px solid #333;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
+            color: #0f0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .terminal-header {
+            height: 30px;
+            background: #1a1a1a;
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            gap: 8px;
+        }
+
+        .circle { width: 12px; height: 12px; border-radius: 50%; }
+        .red { background: #ff5f56; }
+        .yellow { background: #ffbd2e; }
+        .green { background: #27c93f; }
+        .title-text { color: #888; font-size: 0.8rem; margin-left: 10px; }
+        
+        .terminal-body {
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+            flex-grow: 1;
+        }
+
+        .ascii-art {
+            font-size: 0.5rem;
+            line-height: 1.1;
+            color: #0f0;
+            white-space: pre;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        .terminal-text {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .prompt { color: #ff79c6; } /* Pink prompt */
+        .command { color: #fff; }
+        .output { color: #0f0; margin-left: 10px; }
+        .string { color: #f1fa8c; } /* Yellow strings */
+        .cursor { display: inline-block; width: 8px; height: 14px; background: #0f0; animation: blink 1s step-end infinite; vertical-align: bottom;}
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="terminal-header">
+            <div class="circle red"></div>
+            <div class="circle yellow"></div>
+            <div class="circle green"></div>
+            <span class="title-text">prathamesh@bash ~</span>
+        </div>
+        <div class="terminal-body">
+            <!-- Awesome minimalist ASCII face/logo instead of image for the terminal -->
+            <div class="ascii-art">
+   o&nbsp;&nbsp;&nbsp;o
+    \ /
+   / o \
+  ( o o )
+   ===
+  /   \
+           </div>
+            
+            <div class="terminal-text">
+                <div>
+                    <span class="prompt">prathamesh@bash:~$</span> <span class="command">echo "Hi there!"</span><br>
+                    <span class="output">Hi there! I'm Prathamesh Shinde.</span>
+                </div>
+                
+                <div>
+                    <span class="prompt">prathamesh@bash:~$</span> <span class="command">cat role.txt</span><br>
+                    <span class="output">Lead Software Engineer</span>
+                </div>
+
+                <div>
+                    <span class="prompt">prathamesh@bash:~$</span> <span class="command">ping contact -c 1</span><br>
+                    <span class="output">Reply from <span class="string">+91 9876543210</span></span><br>
+                    <span class="output">Reply from <span class="string">prathamesh.dev</span></span>
+                </div>
+
+                <div>
+                    <span class="prompt">prathamesh@bash:~$</span> <span class="cursor"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

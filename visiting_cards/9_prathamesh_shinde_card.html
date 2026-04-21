@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prathamesh Shinde | Digital Visiting Card</title>
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-glow: #D4AF37;
+            --secondary-glow: #FFDF00;
+            --text-main: #FFF8DC;
+            --text-muted: rgba(255, 248, 220, 0.7);
+            --glass-bg: rgba(20, 15, 5, 0.6);
+            --glass-border: rgba(212, 175, 55, 0.3);
+            --gold-gradient: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0d0a04;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(212, 175, 55, 0.15), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(255, 223, 0, 0.1), transparent 25%);
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        /* Animated Blob Backgrounds */
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.6;
+            animation: float 10s infinite ease-in-out alternate;
+        }
+
+        .blob-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--primary-glow);
+            top: 10%;
+            left: 20%;
+        }
+
+        .blob-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--secondary-glow);
+            bottom: 10%;
+            right: 15%;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 50px) scale(1.1); }
+        }
+
+        /* Card Setup */
+        .card-container {
+            width: 90%;
+            max-width: 450px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            border-radius: 24px;
+            padding: 40px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            text-align: center;
+            color: var(--text-main);
+            position: relative;
+            overflow: hidden;
+            transform: translateZ(20px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Subtle reflection line */
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.1) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: skewX(-20deg);
+            animation: shine 6s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 200%; }
+            100% { left: 200%; }
+        }
+
+        /* Profile & Name */
+        .avatar-container {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            padding: 4px;
+            background: var(--gold-gradient);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+            position: relative;
+            transform: translateZ(40px);
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #0d0a04;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--text-main);
+            overflow: hidden;
+            /* Placeholder for actual image */
+        }
+
+        .avatar-initial {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+            transform: translateZ(30px);
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            color: var(--secondary-glow);
+            font-weight: 400;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transform: translateZ(25px);
+        }
+
+        /* Skills section */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 30px;
+            transform: translateZ(25px);
+        }
+
+        .skill-badge {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--text-main);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-badge:hover {
+            background: rgba(212, 175, 55, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.2);
+            color: #FFF8DC;
+        }
+
+        /* Contact Details */
+        .contact-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            transform: translateZ(20px);
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .icon-box {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary-glow);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover .icon-box {
+            background: var(--secondary-glow);
+            color: #0d0a04;
+            transform: rotate(5deg) scale(1.1);
+        }
+
+        .contact-item svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .contact-info {
+            text-align: left;
+            flex: 1;
+        }
+
+        .contact-label {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 3px;
+        }
+
+        .contact-value {
+            display: block;
+            font-size: 1.05rem;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Action Buttons */
+        .actions {
+            margin-top: 35px;
+            display: flex;
+            gap: 15px;
+            transform: translateZ(25px);
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 20px;
+            border-radius: 30px;
+            border: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--gold-gradient);
+            color: #0d0a04;
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.5);
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--glass-border);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Background Animations -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="card-container" id="cardContainer">
+        <div class="glass-card">
+            
+            <div class="avatar-container">
+                <div class="avatar">
+                    <span class="avatar-initial">PS</span>
+                </div>
+            </div>
+
+            <h1>Prathamesh Shinde</h1>
+            <div class="tagline">Professional Full Stack Developer</div>
+            
+            <div class="skills-container">
+                <span class="skill-badge">Python</span>
+                <span class="skill-badge">HTML</span>
+                <span class="skill-badge">CSS</span>
+                <span class="skill-badge">SQL</span>
+                <span class="skill-badge">MongoDB</span>
+            </div>
+
+            <div class="contact-list">
+                <a href="tel:8010419685" class="contact-item">
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.01.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM19 12h2a9 9 0 0 0-9-9v2c3.87 0 7 3.13 7 7zm-4 0h2c0-2.76-2.24-5-5-5v2c1.66 0 3 1.34 3 3z"/>
+                        </svg>
+                    </div>
+                    <div class="contact-info">
+                        <span class="contact-label">Phone</span>
+                        <span class="contact-value">+91 8010419685</span>
+                    </div>
+                </a>
+
+                <a href="mailto:Prathamesshinde2002@gmail.com" class="contact-item">
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                    </div>
+                    <div class="contact-info">
+                        <span class="contact-label">Email</span>
+                        <span class="contact-value">Prathamesshinde2002@gmail.com</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="actions">
+                <a href="#" class="btn btn-primary" onclick="downloadVCard(event)">Save Contact</a>
+                <a href="https://wa.me/918010419685" target="_blank" class="btn btn-outline" style="border-color: #25D366; color: #25D366;">WhatsApp</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 3D Tilt Effect Script -->
+    <script>
+        const cardContainer = document.getElementById('cardContainer');
+
+        cardContainer.addEventListener('mousemove', (e) => {
+            const { left, top, width, height } = cardContainer.getBoundingClientRect();
+            const x = (e.clientX - left) / width;
+            const y = (e.clientY - top) / height;
+
+            const rotateX = (y - 0.5) * -20; // Max rotation 20deg
+            const rotateY = (x - 0.5) * 20;
+
+            cardContainer.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        });
+
+        cardContainer.addEventListener('mouseleave', () => {
+            cardContainer.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+        });
+
+        function downloadVCard(e) {
+            e.preventDefault();
+            
+            // vCard string structure
+            const vCardData = `BEGIN:VCARD
+VERSION:3.0
+FN:Prathamesh Shinde
+TITLE:Professional Full Stack Developer
+TEL;TYPE=CELL:+918010419685
+EMAIL:Prathamesshinde2002@gmail.com
+END:VCARD`;
+
+            // Create blob and download link
+            const blob = new Blob([vCardData], { type: 'text/vcard' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'Prathamesh_Shinde.vcf';
+            document.body.appendChild(link);
+            link.click();
+            
+            // Cleanup
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Humanized Corporate Professional Card</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #e5e7eb;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .card {
+            width: 450px;
+            height: 250px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #172554 100%);
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            color: white;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 250px;
+            height: 250px;
+            background: rgba(255, 215, 0, 0.05);
+            border-radius: 50%;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .text-box h1 {
+            margin: 0;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .text-box h2 {
+            margin: 5px 0 0 0;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #fbbf24;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .greeting {
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: #9ca3af;
+            font-style: italic;
+            max-width: 80%;
+        }
+
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #fbbf24;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 10;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            position: relative;
+            z-index: 10;
+        }
+
+        .col {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #d1d5db;
+        }
+
+        .info-row i {
+            width: 20px;
+            color: #fbbf24;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="text-box">
+                <h1>Prathamesh Shinde</h1>
+                <h2>Founder & Developer</h2>
+                <div class="greeting">"Hi! I build digital solutions that elevate businesses. Let's talk!"</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2.5&w=256&h=256&q=80"
+                alt="Prathamesh Profile" class="profile-img">
+        </div>
+
+        <div class="contact-info">
+            <div class="col">
+                <div class="info-row"><i>📞</i> +91 8010419685</div>
+                <div class="info-row"><i>✉️</i> prathamesshinde2002@gmail.com</div>
+            </div>
+            <div class="col" style="align-items: flex-end;">
+                <div class="info-row"><i style="margin-right:5px;">🌐</i> prathamesh.dev</div>
+                <div class="info-row"><i style="margin-right:5px;">📍</i> Mumbai, IN</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

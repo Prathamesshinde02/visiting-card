@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impressive Neon Cyberpunk Card</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #050505;
+            font-family: 'Rajdhani', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 3D SYNTHWAVE / CYBERPUNK ANIMATED GRID BACKGROUND */
+        .bg-grid {
+            position: absolute;
+            width: 200vw;
+            height: 200vh;
+            top: -50vh;
+            left: -50vw;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.25) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.25) 2px, transparent 2px);
+            background-size: 60px 60px;
+            transform: perspective(600px) rotateX(60deg) translateY(0);
+            animation: gridMove 2s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes gridMove {
+            0% { transform: perspective(600px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(600px) rotateX(60deg) translateY(60px); }
+        }
+
+        /* Ambient scanline and vignette overlay */
+        .bg-overlay {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at center, transparent 10%, #050505 75%),
+                repeating-linear-gradient(0deg, rgba(0,0,0,0.15), rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px);
+            z-index: 2;
+        }
+
+        /* Glowing orb behind the card */
+        .glow-orb {
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.25) 0%, transparent 70%);
+            z-index: 3;
+            border-radius: 50%;
+        }
+
+        .card {
+            width: 490px;
+            height: 260px;
+            background: rgba(10, 10, 10, 0.85); /* Slightly transparent to see grid */
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 2px solid #0ff;
+            border-radius: 4px;
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.5), inset 0 0 15px rgba(0, 255, 255, 0.2);
+            padding: 25px;
+            box-sizing: border-box;
+            color: #fff;
+            position: relative;
+            z-index: 10;
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 35px), calc(100% - 35px) 100%, 0 100%);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .card:hover {
+            box-shadow: 0 0 45px #0ff, inset 0 0 30px rgba(0, 255, 255, 0.5);
+            transform: scale(1.05);
+            background: rgba(10, 10, 10, 0.95);
+        }
+
+        .card::before {
+            content: 'USER_ID // 001xP';
+            position: absolute;
+            top: 5px;
+            right: 15px;
+            font-size: 0.65rem;
+            color: #0ff;
+            letter-spacing: 3px;
+        }
+
+        .hologram-portrait {
+            width: 125px;
+            height: 125px;
+            border: 2px solid #0ff;
+            border-radius: 5px;
+            object-fit: cover;
+            filter: grayscale(100%) sepia(100%) hue-rotate(140deg) saturate(300%) contrast(1.5);
+            box-shadow: 0 0 15px #0ff;
+        }
+
+        .info-col {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .greeting {
+            color: #0ff;
+            font-size: 0.9rem;
+            margin-bottom: 3px;
+        }
+
+        .name {
+            font-size: 2.3rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 0 5px #0ff, 0 0 15px #0ff;
+            margin: 0;
+            line-height: 1;
+            letter-spacing: 1.5px;
+        }
+
+        .role {
+            font-size: 1rem;
+            color: #ff003c;
+            text-transform: uppercase;
+            letter-spacing: 3.5px;
+            text-shadow: 0 0 5px #ff003c;
+            margin-top: 6px;
+        }
+
+        .grid-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 25px;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px dashed rgba(0, 255, 255, 0.4);
+            padding-bottom: 3px;
+        }
+
+        .data-label { color: #0ff; font-size: 0.75rem; text-transform: uppercase; }
+        .data-val { color: #d1d5db; font-size: 0.9rem; letter-spacing: 0.5px;}
+        
+        .barcode {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            height: 25px;
+            width: 80px;
+            background: repeating-linear-gradient(
+                90deg, #0ff, #0ff 2px, transparent 2px, transparent 4px,
+                #0ff 4px, #0ff 5px, transparent 5px, transparent 8px
+            );
+            opacity: 0.8;
+            box-shadow: 0 0 5px #0ff;
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0) }
+            20% { transform: translate(-2px, 2px) }
+            40% { transform: translate(-2px, -2px) }
+            60% { transform: translate(2px, 2px) }
+            80% { transform: translate(2px, -2px) }
+            100% { transform: translate(0) }
+        }
+
+        .card:hover .hologram-portrait {
+            animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+            filter: grayscale(100%) sepia(100%) hue-rotate(180deg) saturate(300%) contrast(1.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="bg-overlay"></div>
+    <div class="glow-orb"></div>
+
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&h=256&q=80" alt="Cyber Face" class="hologram-portrait">
+        
+        <div class="info-col">
+            <div>
+                <div class="greeting">CONNECTION ESTABLISHED.</div>
+                <h1 class="name">PRATHAMESH</h1>
+                <div class="role">Netrunner • Dev</div>
+            </div>
+            
+            <div class="grid-info">
+                <div class="info-row">
+                    <span class="data-label">COMM_LINK</span>
+                    <span class="data-val">+91 8010419685</span>
+                </div>
+                <div class="info-row">
+                    <span class="data-label">SECURE_MAIL</span>
+                    <span class="data-val">prathamesshinde2002@gmail.com</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="barcode"></div>
+    </div>
+</body>
+</html>
